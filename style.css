@@ -1,0 +1,545 @@
+/* ----------- PANTALLA DE CONTRASEÑA ----------- */
+#password-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #C8AD7F; /* Fondo beige consistente */
+  font-family: 'Poppins', sans-serif;
+}
+
+.password-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 320px;
+  border: 2px solid #89171F;
+}
+
+.password-container h2 {
+  color: #89171F;
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+
+#password-display {
+  font-size: 28px;
+  letter-spacing: 8px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  color: #89171F;
+  font-weight: bold;
+  min-height: 30px;
+}
+
+.error-message {
+  color: #B4182D;
+  font-size: 14px;
+  margin-bottom: 15px;
+  min-height: 20px;
+  font-weight: bold;
+}
+
+.keypad {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.keypad-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.key {
+  width: 70px;
+  height: 70px;
+  font-size: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.key:hover {
+  background-color: #e6e6e6;
+  transform: scale(1.05);
+}
+
+.key:active {
+  transform: scale(0.95);
+}
+
+.key.clear, .key.delete {
+  background-color: #B4182D;
+  color: white;
+}
+
+.key.clear:hover, .key.delete:hover {
+  background-color: #7E112E;
+}
+
+/* ----------- ESTILOS GENERALES DEL BODY ----------- */
+body {
+  margin: 0;
+  background: #C8AD7F;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+/* ----------- PANTALLA INICIAL ----------- */
+#inicio {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+  overflow: hidden; /* Solo la pantalla inicial tiene overflow hidden */
+}
+
+h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 80px;
+  color: #89171F; /* Carmesí para el título */
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.botones-inicio {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.botones-inicio button {
+  background-color: #B4182D; /* Rojo vibrante para el botón */
+  color: white;
+  font-size: 20px;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+.botones-inicio button:hover {
+  background-color: #7E112E; /* Rojo vino al hacer hover */
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Corazones perfectos con animación */
+.corazon {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform: rotate(45deg);
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+  animation: latido 2s infinite;
+}
+
+.corazon::before,
+.corazon::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: inherit;
+}
+
+.corazon::before {
+  top: -50px;
+  left: 0;
+}
+
+.corazon::after {
+  top: 0;
+  left: -50px;
+}
+
+.corazon:hover {
+  transform: rotate(45deg) scale(1.1);
+}
+
+#corazonRojo { 
+  background-color: #900020; /* Burgundy para tu novia */
+  left: 100px; 
+  top: 40%; 
+}
+
+#corazonAzul { 
+  background-color: #242E49; /* Azul medio para ti */
+  right: 100px; 
+  top: 40%; 
+  animation-delay: 0.5s;
+}
+
+@keyframes latido {
+  0% { transform: rotate(45deg) scale(1); }
+  50% { transform: rotate(45deg) scale(1.1); }
+  100% { transform: rotate(45deg) scale(1); }
+}
+
+/* ----------- PANTALLA PRINCIPAL - DÍAS JUNTOS ----------- */
+#main {
+  display: none;
+  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  background: #C8AD7F;
+  position: relative;
+  /* Permitimos scroll si es necesario */
+  overflow-y: auto;
+}
+
+#mensaje {
+  width: 40%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+#mensaje p {
+  font-family: 'Poppins', sans-serif; /* Misma fuente que el contador */
+  font-size: 28px; /* Tamaño ligeramente mayor que el contador */
+  font-weight: 500; /* Peso medio para mejor legibilidad */
+  color: #89171F; /* Carmesí para el mensaje */
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#contador p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  margin-top: 30px;
+  color: #54162B; /* Rojo oscuro para el texto del contador */
+  background-color: rgba(200, 173, 127, 0.8); /* Fondo beige semitransparente */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #89171F; /* Borde carmesí */
+}
+
+/* Contenedor para el árbol y su contador */
+#arbol-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo para el contador de corazones (ahora arriba del árbol) */
+#contadorCorazones {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#contadorCorazones p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  color: #54162B; /* Rojo oscuro para el texto */
+  background-color: rgba(200, 173, 127, 0.9); /* Fondo beige semitransparente */
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #89171F; /* Borde carmesí */
+  display: inline-block;
+  margin: 0;
+}
+
+#arbol {
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+
+.tronco {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 40px;
+  height: 200px;
+  background-color: #804000; /* Color marrón para el tronco */
+  transform: translateX(-50%);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hojas en forma de corazón con animación */
+.hoja-corazon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.2));
+  animation: flotar 4s ease-in-out infinite;
+}
+
+.hoja-corazon::before,
+.hoja-corazon::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: inherit;
+}
+
+.hoja-corazon::before {
+  top: -10px;
+  left: 0;
+}
+
+.hoja-corazon::after {
+  top: 0;
+  left: -10px;
+}
+
+@keyframes flotar {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(-10px); }
+}
+
+/* ----------- PANTALLA GALERÍA ----------- */
+#galeria {
+  display: none;
+  min-height: 100vh;
+  background: #C8AD7F;
+  padding: 40px 20px 100px; /* Más padding inferior para el botón */
+  flex-direction: column;
+  align-items: center;
+}
+
+
+#encabezado-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+
+#titulo-galeria {
+  font-family: 'Comic Neue', cursive;
+  font-size: 50px;
+  font-weight: bold;
+  color: #89171F;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(200, 173, 127, 0.8);
+  padding: 20px 40px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #89171F;
+  text-align: center;
+}
+
+.galeria-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 60vh;
+  margin-bottom: 150px; /* Más espacio para el botón */
+}
+
+.galeria-fotos {
+  --d: 10s; 
+  display: grid;
+  place-items: center;
+  width: 320px;
+  height: 320px;
+  position: relative;
+}
+
+.galeria-fotos > img {
+  grid-area: 1/1;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 15px solid #f2f2f2;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  animation: slide var(--d) infinite, z-order var(--d) infinite steps(1);
+  border-radius: 15px;
+}
+
+.galeria-fotos img:last-child {
+  animation-name: slide, z-order-last;
+}
+
+.galeria-fotos > img:nth-child(1) { animation-delay: calc(0 * var(--d)); --r: 16deg; }
+.galeria-fotos > img:nth-child(2) { animation-delay: calc(-0.2 * var(--d)); --r: -1deg; }
+.galeria-fotos > img:nth-child(3) { animation-delay: calc(-0.4 * var(--d)); --r: -19deg; }
+.galeria-fotos > img:nth-child(4) { animation-delay: calc(-0.6 * var(--d)); --r: 6deg; }
+.galeria-fotos > img:nth-child(5) { animation-delay: calc(-0.8 * var(--d)); --r: -8deg; }
+
+@keyframes slide {
+  10% { transform: translateX(120%) rotate(var(--r)); }
+  0%, 100%, 20% { transform: translateX(0%) rotate(var(--r)); }
+}
+
+@keyframes z-order {
+  10%, 20% { z-index: 1; }
+  80% { z-index: 2; }
+}
+
+@keyframes z-order-last {
+  10%, 20% { z-index: 1; }
+  90% { z-index: 2; }
+}
+
+/* Botones de volver - POSICIÓN FIJA EN LA PARTE INFERIOR */
+.btn-volver {
+  position: fixed; /* Cambiado a fixed para que siempre sea visible */
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #B4182D;
+  color: white;
+  font-size: 20px;
+  border: none;
+  padding: 12px 35px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Aseguramos que esté por encima de todo */
+}
+
+.btn-volver:hover {
+  background-color: #7E112E;
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Scroll personalizado para el body */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(200, 173, 127, 0.5);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #89171F;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #B4182D;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .password-container {
+    width: 280px;
+    padding: 30px 20px;
+  }
+  
+  .key {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+  }
+
+  #galeria {
+    padding: 20px 10px 80px;
+  }
+  
+  #titulo-galeria { 
+    font-size: 32px; 
+    padding: 15px 25px;
+    margin-top: 20px;
+  }
+  
+  .galeria-fotos {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .galeria-fotos > img {
+    border: 12px solid #f2f2f2;
+  }
+  
+  .galeria-container {
+    margin-bottom: 120px;
+  }
+  
+  .btn-volver {
+    font-size: 18px;
+    padding: 10px 30px;
+    bottom: 30px;
+  }
+
+  #main {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+    .password-container {
+    width: 250px;
+    padding: 25px 15px;
+  }
+  
+  .key {
+    width: 55px;
+    height: 55px;
+    font-size: 18px;
+  }
+  #galeria {
+    padding: 20px 10px 70px;
+  }
+  
+  #titulo-galeria { 
+    font-size: 28px; 
+    padding: 12px 20px;
+  }
+  
+  .galeria-fotos {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .galeria-fotos > img {
+    border: 10px solid #f2f2f2;
+  }
+  
+  .galeria-container {
+    margin-bottom: 100px;
+  }
+  
+  .btn-volver {
+    bottom: 25px;
+  }
+  
+  #main {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S & A</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- PANTALLA DE CONTRASEÑA -->
+  <div id="password-screen">
+    <div class="password-container">
+      <h2>Ingresa la contraseña</h2>
+      <div id="password-display">••••••</div>
+      <div id="password-error" class="error-message"></div>
+      
+      <div class="keypad">
+        <div class="keypad-row">
+          <button class="key" data-number="1">1</button>
+          <button class="key" data-number="2">2</button>
+          <button class="key" data-number="3">3</button>
+        </div>
+        <div class="keypad-row">
+          <button class="key" data-number="4">4</button>
+          <button class="key" data-number="5">5</button>
+          <button class="key" data-number="6">6</button>
+        </div>
+        <div class="keypad-row">
+          <button class="key" data-number="7">7</button>
+          <button class="key" data-number="8">8</button>
+          <button class="key" data-number="9">9</button>
+        </div>
+        <div class="keypad-row">
+          <button id="btn-clear" class="key clear">C</button>
+          <button class="key" data-number="0">0</button>
+          <button id="btn-delete" class="key delete">⌫</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANTALLA INICIAL -->
+  <div id="inicio">
+    <div id="corazonRojo" class="corazon"></div>
+    <div id="corazonAzul" class="corazon"></div>
+
+    <h1>S & A</h1>
+    <div class="botones-inicio">
+      <button id="btnDiasJuntos">DÍAS JUNTOS</button>
+      <button id="btnGaleria">GALERÍA</button>
+    </div>
+  </div>
+
+  <!-- PANTALLA PRINCIPAL - DÍAS JUNTOS -->
+  <div id="main">
+    <div id="mensaje">
+      <p>Te amo con todo mi corazón, mi princesa hermosa </p>
+      <div id="contador"></div>
+    </div>
+    <div id="arbol-container">
+      <div id="contadorCorazones"></div>
+      <div id="arbol">
+        <div class="tronco"></div>
+      </div>
+    </div>
+    <button id="btnVolverMain" class="btn-volver">Volver</button>
+  </div>
+
+  <!-- PANTALLA GALERÍA -->
+  <div id="galeria">
+    <div id="encabezado-container">
+      <div id="titulo-galeria">Nuestra Galería de Amor</div>
+    </div>
+    
+    <div class="galeria-container">
+      <div class="galeria-fotos">
+        <img src="img/1.jpg" alt="Foto 1 de nuestra relación">
+        <img src="img/2.jpg" alt="Foto 2 de nuestra relación">
+        <img src="img/3.jpg" alt="Foto 3 de nuestra relación">
+        <img src="img/4.jpg" alt="Foto 4 de nuestra relación">
+        <img src="img/5.jpg" alt="Foto 5 de nuestra relación">
+      </div>
+    </div>
+    
+    <button id="btnVolverGaleria" class="btn-volver">Volver</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
