@@ -365,7 +365,7 @@ h1 {
 }
 
 .galeria-fotos {
-  --d: 10s; 
+  --d: 28s; 
   display: grid;
   place-items: center;
   width: 320px;
@@ -389,12 +389,6 @@ h1 {
 .galeria-fotos img:last-child {
   animation-name: slide, z-order-last;
 }
-
-.galeria-fotos > img:nth-child(1) { animation-delay: calc(0 * var(--d)); --r: 16deg; }
-.galeria-fotos > img:nth-child(2) { animation-delay: calc(-0.2 * var(--d)); --r: -1deg; }
-.galeria-fotos > img:nth-child(3) { animation-delay: calc(-0.4 * var(--d)); --r: -19deg; }
-.galeria-fotos > img:nth-child(4) { animation-delay: calc(-0.6 * var(--d)); --r: 6deg; }
-.galeria-fotos > img:nth-child(5) { animation-delay: calc(-0.8 * var(--d)); --r: -8deg; }
 
 @keyframes slide {
   10% { transform: translateX(120%) rotate(var(--r)); }
@@ -455,8 +449,115 @@ body::-webkit-scrollbar-thumb:hover {
   background: #B4182D;
 }
 
+/* ----------- PANTALLA MÚSICA ----------- */
+#musica {
+  display: none;
+  min-height: 100vh;
+  background: #C8AD7F;
+  padding: 40px 20px 100px;
+  flex-direction: column;
+  align-items: center;
+}
+
+#titulo-musica {
+  font-family: 'Comic Neue', cursive;
+  font-size: 50px;
+  font-weight: bold;
+  color: #89171F;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(200, 173, 127, 0.8);
+  padding: 20px 40px;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border: 2px solid #89171F;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.playlists-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.playlists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+.playlist-btn {
+  background: linear-gradient(135deg, #B4182D, #7E112E);
+  color: white;
+  border: none;
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.playlist-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.playlist-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #7E112E, #B4182D);
+}
+
+.playlist-btn:hover::after {
+  left: 100%;
+}
+
+.playlist-btn:active {
+  transform: translateY(-2px);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+
+  #titulo-musica {
+    font-size: 32px;
+    padding: 15px 25px;
+    margin-bottom: 30px;
+  }
+  
+  .playlists-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .playlist-btn {
+    padding: 18px;
+    font-size: 16px;
+    min-height: 70px;
+  }
+  
+  #musica {
+    padding: 20px 10px 80px;
+  }
+
     .password-container {
     width: 280px;
     padding: 30px 20px;
@@ -503,6 +604,22 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 @media (max-width: 480px) {
+
+  #titulo-musica {
+    font-size: 28px;
+    padding: 12px 20px;
+  }
+  
+  .playlist-btn {
+    padding: 15px;
+    font-size: 15px;
+    min-height: 65px;
+  }
+  
+  #musica {
+    padding: 20px 10px 70px;
+  }
+
     .password-container {
     width: 250px;
     padding: 25px 15px;
