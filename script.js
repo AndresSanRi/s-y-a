@@ -372,3 +372,48 @@ function iniciarContador() {
   actualizarContador();
   setInterval(actualizarContador, 1000);
 }
+
+// ----------- CONFIGURACIÓN RESPONSIVE DE LA GALERÍA -----------
+function configurarGaleriaResponsive() {
+  const galeriaFotos = document.querySelector('.galeria-fotos');
+  if (!galeriaFotos) return;
+
+  const imagenes = galeriaFotos.querySelectorAll('img');
+  const totalImagenes = imagenes.length;
+  
+  // Ajustar duración según el dispositivo
+  let duracionTotal;
+  if (window.innerWidth <= 768) {
+    duracionTotal = totalImagenes * 1.5; // Más rápido en móviles
+  } else {
+    duracionTotal = totalImagenes * 2; // Normal en desktop
+  }
+  
+  galeriaFotos.style.setProperty('--d', `${duracionTotal}s`);
+
+  // Configurar delays y rotaciones
+  imagenes.forEach((img, index) => {
+    const delay = -index * (1 / totalImagenes);
+    const rotacion = (Math.random() * 30) - 15;
+    
+    img.style.animationDelay = `calc(${delay} * var(--d))`;
+    img.style.setProperty('--r', `${rotacion}deg`);
+  });
+
+  actualizarKeyframesGaleria(totalImagenes);
+}
+
+// Actualizar la galería cuando cambie el tamaño de la ventana
+window.addEventListener('resize', function() {
+  if (document.getElementById("galeria").style.display === "flex") {
+    configurarGaleriaResponsive();
+  }
+});
+
+// Y modifica el event listener del botón galería para usar la función responsive:
+document.getElementById("btnGaleria").addEventListener("click", () => {
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("galeria").style.display = "flex";
+  window.scrollTo(0, 0);
+  configurarGaleriaResponsive(); // Usar la versión responsive
+});

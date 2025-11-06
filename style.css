@@ -100,6 +100,273 @@ body {
   min-height: 100vh;
 }
 
+/* ----------- AJUSTES RESPONSIVE PARA MÓVILES ----------- */
+@media (max-width: 768px) {
+  /* Ajustes para pantalla inicial */
+  #inicio {
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 60px;
+    margin-bottom: 30px;
+  }
+  
+  .botones-inicio {
+    gap: 15px;
+  }
+  
+  .botones-inicio button {
+    width: 220px;
+    font-size: 18px;
+    padding: 12px 30px;
+  }
+  
+  /* Ajustes para corazones en móviles */
+  .corazon {
+    width: 70px;
+    height: 70px;
+    position: fixed; /* Cambiamos a fixed para mejor control en móviles */
+  }
+  
+  .corazon::before,
+  .corazon::after {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .corazon::before {
+    top: -35px;
+  }
+  
+  .corazon::after {
+    left: -35px;
+  }
+  
+  #corazonRojo {
+    left: 20px;
+    top: 20%;
+    animation: latido-mobile 2s infinite;
+  }
+  
+  #corazonAzul {
+    right: 20px;
+    top: 20%;
+    animation: latido-mobile 2s infinite 0.5s;
+  }
+  
+  @keyframes latido-mobile {
+    0% { transform: rotate(45deg) scale(0.8); }
+    50% { transform: rotate(45deg) scale(0.9); }
+    100% { transform: rotate(45deg) scale(0.8); }
+  }
+  
+  /* Ajustes para pantalla principal */
+  #main {
+    flex-direction: column;
+    padding: 20px;
+    justify-content: flex-start;
+  }
+  
+  #mensaje {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  #mensaje p {
+    font-size: 22px;
+  }
+  
+  #arbol-container {
+    width: 100%;
+  }
+  
+  #arbol {
+    height: 400px;
+  }
+  
+  /* Ajustes para galería */
+  .galeria-container {
+    margin-bottom: 100px;
+  }
+  
+  .galeria-fotos {
+    width: 280px;
+    height: 280px;
+  }
+  
+  /* Ajustes para música */
+  .playlists-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .playlist-btn {
+    padding: 15px;
+    font-size: 16px;
+    min-height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustes para pantallas muy pequeñas */
+  h1 {
+    font-size: 50px;
+    margin-bottom: 25px;
+  }
+  
+  .botones-inicio button {
+    width: 200px;
+    font-size: 16px;
+    padding: 10px 25px;
+  }
+  
+  /* Corazones más pequeños en móviles muy pequeños */
+  .corazon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .corazon::before,
+  .corazon::after {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .corazon::before {
+    top: -30px;
+  }
+  
+  .corazon::after {
+    left: -30px;
+  }
+  
+  #corazonRojo {
+    left: 15px;
+    top: 15%;
+  }
+  
+  #corazonAzul {
+    right: 15px;
+    top: 15%;
+  }
+  
+  /* Ajustes de texto */
+  #mensaje p {
+    font-size: 20px;
+  }
+  
+  #contador p {
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  #contadorCorazones p {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+  
+  /* Galería más pequeña */
+  .galeria-fotos {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .galeria-fotos > img {
+    border: 10px solid #f2f2f2;
+  }
+  
+  /* Títulos más pequeños */
+  #titulo-galeria,
+  #titulo-musica {
+    font-size: 35px;
+    padding: 15px 25px;
+  }
+  
+  /* Botones de volver */
+  .btn-volver {
+    font-size: 18px;
+    padding: 10px 25px;
+    bottom: 20px;
+  }
+}
+
+/* Ajustes específicos para orientación horizontal en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+  #inicio {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .botones-inicio {
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .botones-inicio button {
+    width: 180px;
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+  
+  .corazon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .corazon::before,
+  .corazon::after {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .corazon::before {
+    top: -25px;
+  }
+  
+  .corazon::after {
+    left: -25px;
+  }
+  
+  #corazonRojo {
+    left: 10px;
+    top: 25%;
+  }
+  
+  #corazonAzul {
+    right: 10px;
+    top: 25%;
+  }
+}
+
+/* Mejoras para la galería en móviles */
+@media (max-width: 768px) {
+  .galeria-fotos {
+    --d: 21s; /* Reducimos un poco la duración en móviles */
+  }
+}
+
+/* Asegurar que las imágenes de la galería se carguen correctamente */
+.galeria-fotos img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mejoras de rendimiento para animaciones en móviles */
+@media (max-width: 768px) {
+  .corazon {
+    will-change: transform;
+  }
+  
+  .hoja-corazon {
+    will-change: transform;
+  }
+}
+
 /* ----------- PANTALLA INICIAL ----------- */
 #inicio {
   display: none;
